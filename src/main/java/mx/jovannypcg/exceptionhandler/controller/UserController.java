@@ -23,11 +23,4 @@ public class UserController {
 
         throw UserNotFoundException.createWith(username);
     }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ApiError> handleContentNotAllowedException(UserNotFoundException unfe) {
-        List<String> errors = Collections.singletonList(unfe.getMessage());
-
-        return new ResponseEntity<>(new ApiError(errors), HttpStatus.NOT_FOUND);
-    }
 }

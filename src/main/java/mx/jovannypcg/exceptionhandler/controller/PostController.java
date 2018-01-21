@@ -36,14 +36,4 @@ public class PostController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-    @ExceptionHandler(ContentNotAllowedException.class)
-    public ResponseEntity<ApiError> handleContentNotAllowedException(ContentNotAllowedException cnae) {
-        List<String> errorMessages = cnae.getErrors()
-                .stream()
-                .map(contentError -> contentError.getObjectName() + " " + contentError.getDefaultMessage())
-                .collect(Collectors.toList());
-
-        return new ResponseEntity<>(new ApiError(errorMessages), HttpStatus.BAD_REQUEST);
-    }
 }
